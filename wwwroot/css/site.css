@@ -1,0 +1,111 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* ----- Estilos para igualar el ejemplo del PDF ----- */
+.bv-card {
+  border: 1px solid #c9ced6;
+  border-radius: 4px;
+  padding: 0;
+  background: #fff;
+}
+
+.bv-card__header {
+  padding: 14px 18px;
+  border-bottom: 1px solid #c9ced6;
+  font-weight: 600;
+}
+
+.bv-card__body {
+  padding: 18px;
+}
+
+.bv-table thead th {
+  background: #eef1f5;
+  font-weight: 600;
+}
+
+.bv-actions .btn {
+  min-width: 84px;
+}
+
+.bv-form label {
+  font-weight: 600;
+}
+
+.bv-form .form-control, .bv-form .form-select {
+  border-radius: 2px;
+}
+
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+body {
+    background-color: #f5f6f8;
+}
+
+.bv-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: none;
+}
+
+.bv-card__header {
+    font-weight: 600;
+    font-size: 18px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #fafafa;
+}
+
+.bv-card__body {
+    padding: 20px;
+}
+
+.bv-table thead {
+    background-color: #212529;
+    color: white;
+}
+
+.bv-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+.bv-actions .btn {
+    min-width: 70px;
+}
+
+.btn-dark {
+    background-color: #1f1f1f;
+}
+
+.btn-outline-danger {
+    border-width: 1.5px;
+}

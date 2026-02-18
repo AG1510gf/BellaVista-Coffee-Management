@@ -1,0 +1,33 @@
+@model BellaVista.Web.Models.Producto
+
+@{
+    ViewData["Title"] = "Eliminar Producto";
+}
+
+<div class="bv-card">
+    <div class="bv-card__header">Eliminar Producto</div>
+    <div class="bv-card__body">
+        <p class="mb-4">¿Seguro que deseas eliminar este producto?</p>
+
+        <dl class="row mb-4">
+            <dt class="col-sm-3">Nombre</dt>
+            <dd class="col-sm-9">@Model.NombreProducto</dd>
+
+            <dt class="col-sm-3">Categoría (ID)</dt>
+            <dd class="col-sm-9">@Model.CategoriaID</dd>
+
+            <dt class="col-sm-3">Presentación</dt>
+            <dd class="col-sm-9">@Model.Presentacion</dd>
+
+            <dt class="col-sm-3">Precio</dt>
+            <dd class="col-sm-9">Q @Model.PrecioUnitario.ToString("0.00")</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post" class="d-flex gap-3">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@Model.ProductoID" />
+            <button type="submit" class="btn btn-danger px-4">Eliminar</button>
+            <a class="btn btn-sm btn-outline-danger" asp-action="Index">Cancelar</a>
+        </form>
+    </div>
+</div>

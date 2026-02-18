@@ -1,0 +1,104 @@
+@model BellaVista.Web.Models.ViewModels.ProductosIndexVM
+@using System.Linq
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="row g-4">
+    <div class="col-12">
+        <div class="bv-card">
+            <div class="bv-card__header">Productos Registrados</div>
+            <div class="bv-card__body">
+                <div class="table-responsive">
+                    <table class="table table-bordered bv-table align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Nombre del Producto</th>
+                                <th>Tipo de Café</th>
+                                <th>Presentación</th>
+                                <th>Precio</th>
+                                <th class="text-center" style="width: 180px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Productos == null || !Model.Productos.Any())
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">No hay productos registrados.</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var p in Model.Productos)
+                                {
+                                    <tr>
+                                        <td>@p.NombreProducto</td>
+                                        <td>
+                                            @(
+                                                p.CategoriaID == 1 ? "Arábica" :
+                                                p.CategoriaID == 2 ? "Robusta" :
+                                                p.CategoriaID == 3 ? "Mezcla" :
+                                                $"ID {p.CategoriaID}"
+                                            )
+                                        </td>
+                                        <td>@p.Presentacion</td>
+                                        <td>Q @p.PrecioUnitario.ToString("0.00")</td>
+                                        <td class="text-center bv-actions">
+                                            <a class="btn btn-outline-secondary btn-sm me-2" asp-action="Edit" asp-route-id="@p.ProductoID">Editar</a>
+                                            <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@p.ProductoID">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="bv-card">
+            <div class="bv-card__header">Nuevo Producto de Café</div>
+            <div class="bv-card__body">
+                <form class="bv-form" asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre del Producto</label>
+                        <input class="form-control" asp-for="Nuevo.NombreProducto" />
+                        <span class="text-danger" asp-validation-for="Nuevo.NombreProducto"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Tipo de Café</label>
+                        <select class="form-select" asp-for="Nuevo.CategoriaID" asp-items="Model.TiposCafe"></select>
+                        <span class="text-danger" asp-validation-for="Nuevo.CategoriaID"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Presentación</label>
+                        <select class="form-select" asp-for="Nuevo.Presentacion" asp-items="Model.Presentaciones"></select>
+                        <span class="text-danger" asp-validation-for="Nuevo.Presentacion"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Precio Unitario (Q)</label>
+                        <input class="form-control" asp-for="Nuevo.PrecioUnitario" inputmode="decimal" />
+                        <span class="text-danger" asp-validation-for="Nuevo.PrecioUnitario"></span>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <button type="submit" class="btn btn-dark px-4">Guardar</button>
+                        <button type="reset" class="btn btn-outline-secondary px-4">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
